@@ -2,17 +2,16 @@
 public class Transaction {
 	private Account acc;
 	private String accId;
-	private int amount;
-	private int convertAmt;
+	private double amount;
+	private double convertAmt;
 	private String currency;
 	private String accSentTo;
-	public Transaction(Account acc, int amount, int convertAmt, String currency,String accSentTo) {
+	public Transaction(Account acc, double amount, double convertAmt, String currency) {
 		this.acc = acc;
 		this.accId = acc.getUsername();
 		this.amount = amount;
 		this.convertAmt = convertAmt;
 		this.currency = currency;
-		this.accSentTo = accSentTo;
 	}
 	
 	public String getAccSentTo() {
@@ -33,13 +32,13 @@ public class Transaction {
 	public void setAccId(String accId) {
 		this.accId = accId;
 	}
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public int getConvertAmt() {
+	public double getConvertAmt() {
 		return convertAmt;
 	}
 	public void setConvertAmt(int convertAmt) {

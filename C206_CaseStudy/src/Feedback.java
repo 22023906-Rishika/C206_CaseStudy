@@ -1,24 +1,38 @@
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * 
  */
 public class Feedback {
 
-	public LocalDateTime date;
+	public int id ;
+	public LocalDate date;
 	public int rating;
 	public String message;
-	public Feedback(LocalDateTime date, int rating, String message) {
+	
+	
+	public Feedback(int id,LocalDate date, int rating, String message) {
+		this.id = id;
 		this.date = date;
 		this.rating = rating;
 		this.message = message;
 	}
-	public LocalDateTime getDate() {
+	
+	public void setID(int id) {
+		this.id = id;
+	}
+	
+	public int getID() {
+		return this.id;
+	}
+	
+	
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(LocalDateTime date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public int getRating() {

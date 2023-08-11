@@ -18,36 +18,66 @@ public class Account {
 	public double balance;
 	public int contact;
 	public String accId;
-	public Account(Users user, String username, String password, int contact) {
+	
+	public Account(Users user, String username, String password, int contact, double balance) {
 		this.user = user;
 		this.username = username;
 		this.password = password;
 		this.contact = contact;
+		this.balance = balance;
+		this.accId = user.getUserID();
 	}
-	
-	
-	
-	public Users getUsers() {
-		return this.user;
+
+	public Users getUser() {
+		return user;
 	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
 	public int getContact() {
 		return contact;
 	}
+
 	public void setContact(int contact) {
 		this.contact = contact;
 	}
+
+	public String getAccId() {
+		return accId;
+	}
+
+	public void setAccId(String accId) {
+		this.accId = accId;
+	}
+	
+	
+	
 	
 	
 }
