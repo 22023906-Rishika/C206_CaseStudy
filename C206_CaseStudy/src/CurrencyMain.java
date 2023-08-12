@@ -8,14 +8,10 @@
 
 import java.util.ArrayList;
 
-/**
- * 
- */
 public class CurrencyMain {
-	public static ArrayList<Currency> currList =  new ArrayList<Currency>();
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		ArrayList<Currency> currList =  new ArrayList<Currency>();
 		currList.add(new Currency("China", "CNY","Yuan",5.38));
 		currList.add(new Currency("Columbia","COP","Peso", 2936.58));
 		currList.add(new Currency("India","INR","Rupee",61.93));
@@ -26,17 +22,17 @@ public class CurrencyMain {
 		while(subOpt != 6) {
 			switch (subOpt) {
 			case 1:
-				viewAllCurr();
+				viewAllCurr(currList);
 				break;
 			case 2:
-				addCurr();
+				addCurr(currList);
 				break;
 			case 3:
-				editRate();
+				editRate(currList);
 
 				break;
 			case 4:
-				deleteCurr();
+				deleteCurr(currList);
 				break;
 			case 5:
 				searchCurr();
@@ -49,13 +45,10 @@ public class CurrencyMain {
 			subOpt = Helper.readInt("Please choose an option: ");
 		}
 		
-		System.out.println("Exited");
-		
-		
+		System.out.println("Exited");	
 	}
 	
 	public static void currMenu() {
-		System.out.println(" ");
 		System.out.println("1. View all currencies");
 		System.out.println("2. Add a new currency");
 		System.out.println("3. Edit an existing currency");
@@ -64,7 +57,7 @@ public class CurrencyMain {
 		System.out.println("6. Exit");
 		System.out.println(" ");
 	}
-	public static void addCurr() {
+	public static void addCurr(ArrayList<Currency> currList) {
 		{
 			String country = Helper.readString("Enter country name: ");
 			String code = Helper.readString("Enter country code: ");
@@ -78,7 +71,7 @@ public class CurrencyMain {
 
 	}
 
-	public static void editRate() {
+	public static void editRate(ArrayList<Currency> currList) {
 	
 			boolean found = true;
 			String code = Helper.readString("Enter country code to edit exchange rate: ");
@@ -96,9 +89,10 @@ public class CurrencyMain {
 		 else {
 			System.out.println("Administrative rights required!!!");
 		}
+			}
 	}
 
-	public static void deleteCurr() {
+	public static void deleteCurr(ArrayList<Currency> currList) {
 		boolean found = true;
 		String code = Helper.readString("Enter country code to delete: ");
 		for(Currency curr : currList) {
@@ -119,7 +113,7 @@ public class CurrencyMain {
 		}
 	}
 
-	public static void viewAllCurr() {
+	public static void viewAllCurr(ArrayList<Currency> currList) {
 		String output = String.format("%-10s %-10s %-10s %-10s\n","COUNTRY","CODE","CURRENCY","RATE");
 
 		for(Currency curr : currList) {
