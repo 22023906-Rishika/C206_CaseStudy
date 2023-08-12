@@ -9,6 +9,7 @@
 import java.util.ArrayList;
 
 public class CurrencyMain {
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<Currency> currList =  new ArrayList<Currency>();
@@ -25,7 +26,7 @@ public class CurrencyMain {
 				viewAllCurr(currList);
 				break;
 			case 2:
-				addCurr(currList);
+				addCurr(currList,createCurrency());
 				break;
 			case 3:
 				editRate(currList);
@@ -57,20 +58,25 @@ public class CurrencyMain {
 		System.out.println("6. Exit");
 		System.out.println(" ");
 	}
-	public static void addCurr(ArrayList<Currency> currList) {
+	public static void addCurr(ArrayList<Currency> currList, Currency currency) {
 		{
-			String country = Helper.readString("Enter country name: ");
-			String code = Helper.readString("Enter country code: ");
-			String currName = Helper.readString("Enter currency name: ");
-			double rate = Helper.readDouble("Enter exhange rate: ");
-
-			currList.add(new Currency(country,code,currName,rate));
+			currList.add(currency);
 			System.out.println("Currency successfully added");
 		} 
 
 
 	}
+	
+	public static Currency createCurrency() {
+		String country = Helper.readString("Enter country name: ");
+		String code = Helper.readString("Enter country code: ");
+		String currName = Helper.readString("Enter currency name: ");
+		double rate = Helper.readDouble("Enter exhange rate: ");
+		Currency currency = new Currency(country,code,currName,rate);
+		return currency;
+	}
 
+	
 	public static void editRate(ArrayList<Currency> currList) {
 	
 			boolean found = true;
@@ -86,9 +92,6 @@ public class CurrencyMain {
 			if (!found) {
 				System.out.println("Unknown currency code");
 			}
-		 else {
-			System.out.println("Administrative rights required!!!");
-		}
 			}
 	}
 

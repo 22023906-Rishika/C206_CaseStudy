@@ -117,57 +117,9 @@ public class MoneyExchange {
 					}
 				}
 			} else if (opt == 4) {
-
-				CurrencyMain.currMenu();
-				int subOpt = Helper.readInt("Please choose an option: ");
-				while(subOpt != 6) {
-					switch (subOpt) {
-					case 1:
-						 CurrencyMain.viewAllCurr();
-						break;
-					case 2:
-						CurrencyMain.addCurr();
-						break;
-					case 3:
-						CurrencyMain.editRate();
-
-						break;
-					case 4:
-						CurrencyMain.deleteCurr();
-						break;
-					case 5:
-						CurrencyMain.searchCurr();
-						break;
-					default:
-						System.out.println("Invalid choice entered");
-					}
-					CurrencyMain.currMenu();
-					subOpt = Helper.readInt("Please choose an option: ");
-				}
-
+				CurrencyMain.main(null);
 			} else if (opt == 5) {
-				FeedbackMain.feedbackMenu();
-				int subOpt = Helper.readInt("Please choose an option: ");
-				while(subOpt != 5 ) {
-					switch(subOpt) {
-					case 1:
-						FeedbackMain.viewAllFeedBack();
-						break;
-					case 2:
-						FeedbackMain.addFeedback();
-						break;
-					case 3:
-						FeedbackMain.delFeedback();
-						break;
-					case 4:
-						FeedbackMain.searchFeedback();
-						break;
-					default:
-						System.out.println("Invalid choice entered");
-					}
-					FeedbackMain.feedbackMenu();
-					subOpt = Helper.readInt("Please choose an option: ");
-				}
+				FeedbackMain.main(null);
 			}
 
 			Menu();
@@ -201,7 +153,7 @@ public class MoneyExchange {
 		double amt = Helper.readDouble("Enter amount to exchange ($SGD): ");
 		String curr = Helper.readString("Enter currency code to exchange to or 2 to view available currencies: ");
 		if(curr.equals("2")) {
-			CurrencyMain.viewAllCurr();
+			CurrencyMain.viewAllCurr(currList);
 			curr = Helper.readString("Enter currency code to exchange: ");
 
 		}
