@@ -9,7 +9,7 @@
 import java.util.ArrayList;
 
 public class CurrencyMain {
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<Currency> currList =  new ArrayList<Currency>();
@@ -17,7 +17,7 @@ public class CurrencyMain {
 		currList.add(new Currency("Columbia","COP","Peso", 2936.58));
 		currList.add(new Currency("India","INR","Rupee",61.93));
 		currList.add(new Currency("Malaysia","MYR","Ringgit",3.55));
-		
+
 		currMenu();
 		int subOpt = Helper.readInt("Please choose an option: ");
 		while(subOpt != 6) {
@@ -30,7 +30,6 @@ public class CurrencyMain {
 				break;
 			case 3:
 				editRate(currList);
-
 				break;
 			case 4:
 				deleteCurr(currList);
@@ -45,10 +44,10 @@ public class CurrencyMain {
 			currMenu();
 			subOpt = Helper.readInt("Please choose an option: ");
 		}
-		
+
 		System.out.println("Exited");	
 	}
-	
+
 	public static void currMenu() {
 		System.out.println("1. View all currencies");
 		System.out.println("2. Add a new currency");
@@ -60,39 +59,48 @@ public class CurrencyMain {
 	}
 	public static void addCurr(ArrayList<Currency> currList, Currency currency) {
 		{
-			currList.add(currency);
-			System.out.println("Currency successfully added");
-		} 
+			if(currency != null ) {
+				currList.add(currency);
+				System.out.println("Currency successfully added");
+			} 
+		}
 
 
 	}
-	
+
 	public static Currency createCurrency() {
-		String country = Helper.readString("Enter country name: ");
-		String code = Helper.readString("Enter country code: ");
-		String currName = Helper.readString("Enter currency name: ");
-		double rate = Helper.readDouble("Enter exhange rate: ");
-		Currency currency = new Currency(country,code,currName,rate);
+		Currency currency = null;
+		if(!MoneyExchange.isAdmin) {
+			String country = Helper.readString("Enter country name: ");
+			String code = Helper.readString("Enter country code: ");
+			String currName = Helper.readString("Enter currency name: ");
+			double rate = Helper.readDouble("Enter exhange rate: ");
+			currency = new Currency(country,code,currName,rate);
+		} else {
+			System.out.println("Your account does not have administrative rights for this task!!!");
+
+		}
+
 		return currency;
 	}
 
-	
+
 	public static void editRate(ArrayList<Currency> currList) {
-	
-			boolean found = true;
-			String code = Helper.readString("Enter country code to edit exchange rate: ");
-			for(Currency curr : currList) {
-				if(curr.getCurrencyCode().equalsIgnoreCase(code)) {
-					double rate = Helper.readDouble("Enter new rate: ");
-					curr.setExchangeRate(rate);
-					System.out.println(curr.getCurrencyCode() + "rate changed successfully!");
-					found = true;
-					break;
-				}
+
+		boolean found = true;
+		String code = Helper.readString("Enter country code to edit exchange rate: ");
+		for(Currency curr : currList) {
+			if(curr.getCurrencyCode().equalsIgnoreCase(code)) {
+				double rate = Helper.readDouble("Enter new rate: ");
+				curr.setExchangeRate(rate);
+				System.out.println(curr.getCurrencyCode() + "rate changed successfully!");
+				found = true;
+				break;
+			}
 			if (!found) {
 				System.out.println("Unknown currency code");
 			}
-			}
+		}
 	}
 
 	public static void deleteCurr(ArrayList<Currency> currList) {
@@ -129,7 +137,7 @@ public class CurrencyMain {
 
 	public static void searchCurr() {
 		String input = Helper.readString("Enter country or country code: ");
-		
+
 	}
 
 
