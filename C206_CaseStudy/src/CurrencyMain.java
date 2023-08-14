@@ -9,10 +9,10 @@
 import java.util.ArrayList;
 
 public class CurrencyMain {
-
+	public static ArrayList<Currency> currList =  new ArrayList<Currency>();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ArrayList<Currency> currList =  new ArrayList<Currency>();
+		
 		currList.add(new Currency("China", "CNY","Yuan",5.38));
 		currList.add(new Currency("Columbia","COP","Peso", 2936.58));
 		currList.add(new Currency("India","INR","Rupee",61.93));
@@ -26,7 +26,7 @@ public class CurrencyMain {
 				viewAllCurr(currList);
 				break;
 			case 2:
-				addCurr(currList,createCurrency());
+				addCurr(currList,getCurrency(1,currList));
 				break;
 			case 3:
 				editRate(currList);
@@ -57,8 +57,9 @@ public class CurrencyMain {
 		System.out.println("6. Exit");
 		System.out.println(" ");
 	}
-	public static void addCurr(ArrayList<Currency> currList, Currency currency) {
+	public static void addCurr(ArrayList<Currency> currList,Currency currency) {
 		{
+			
 			if(currency != null ) {
 				currList.add(currency);
 				System.out.println("Currency successfully added");
@@ -68,21 +69,6 @@ public class CurrencyMain {
 
 	}
 
-	public static Currency createCurrency() {
-		Currency currency = null;
-		if(!MoneyExchange.isAdmin) {
-			String country = Helper.readString("Enter country name: ");
-			String code = Helper.readString("Enter country code: ");
-			String currName = Helper.readString("Enter currency name: ");
-			double rate = Helper.readDouble("Enter exhange rate: ");
-			currency = new Currency(country,code,currName,rate);
-		} else {
-			System.out.println("Your account does not have administrative rights for this task!!!");
-
-		}
-
-		return currency;
-	}
 
 
 	public static void editRate(ArrayList<Currency> currList) {
@@ -104,24 +90,35 @@ public class CurrencyMain {
 	}
 
 	public static void deleteCurr(ArrayList<Currency> currList) {
-		boolean found = true;
-		String code = Helper.readString("Enter country code to delete: ");
-		for(Currency curr : currList) {
-			if(curr.getCurrencyCode().equalsIgnoreCase(code)) {
-				char opt = Helper.readChar("Do you wish to delete " + curr.getCurrencyCode() + " > (Y/N) ");
-				if (Character.toLowerCase(opt) == 'y') {
-					currList.remove(curr);
-					System.out.println("Currency of code " + curr.getCurrencyCode() + " successfully deleted.");
-					found = true;
-					break;
-				}
+
+	}
+
+	public static Currency getCurrency(int function, ArrayList<Currency> currList ) {
+		Currency currency = null;
+		if(function == 1 ) {
+			
+			if(MoneyExchange.isAdmin == true) {
+				String country = Helper.readString("Enter country name: ");
+				String code = Helper.readString("Enter country code: ");
+				String currName = Helper.readString("Enter currency name: ");
+				double rate = Helper.readDouble("Enter exhange rate: ");
+				currency = new Currency(country,code,currName,rate);
 			} else {
-				found = false;
+				System.out.println("Your account does not have administrative rights for this task!!!");
+
+			}
+		} else if(function == 2) {
+			boolean found = true;
+			String code = Helper.readString("Enter country code to delete: ");
+			for(Currency curr : currList) {
+				if(curr.getCurrencyCode().equalsIgnoreCase(code)) {
+					currency = curr;			
+		}
 			}
 		}
-		if (!found) {
-			System.out.println("Unknown currency code");
-		}
+
+		return currency;
+			
 	}
 
 	public static void viewAllCurr(ArrayList<Currency> currList) {

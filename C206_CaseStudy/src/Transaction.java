@@ -5,8 +5,9 @@ public class Transaction {
 	private double amount;
 	private double convertAmt;
 	private String currency;
-	private String accSentTo;
-	public Transaction(Account acc, double amount, double convertAmt, String currency) {
+	private int id;
+	public Transaction(int id,Account acc, double amount, double convertAmt, String currency) {
+		this.id = id;
 		this.acc = acc;
 		this.accId = acc.getUsername();
 		this.amount = amount;
@@ -14,12 +15,16 @@ public class Transaction {
 		this.currency = currency;
 	}
 	
-	public String getAccSentTo() {
-		return this.accSentTo;
+	public int getId() {
+		return id;
 	}
-	public void setAccSentTo(String accSentTo) {
-		this.accSentTo = accSentTo;
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
+
 	public Account getAcc() {
 		return acc;
 	}

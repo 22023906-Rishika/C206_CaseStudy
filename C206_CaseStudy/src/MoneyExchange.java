@@ -5,10 +5,8 @@ import java.time.LocalDate;
 
 public class MoneyExchange {
 
-	public static ArrayList<Currency> currList =  new ArrayList<Currency>();
+
 	public static ArrayList<Account> accList = new ArrayList<Account>();
-	public static ArrayList<Transaction> transactList = new ArrayList<Transaction>();
-	public static ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
 	
 	public static Account currentUser;
 	public static boolean isAdmin = false;
@@ -22,10 +20,7 @@ public class MoneyExchange {
 
 	public static void main(String[] args) {
 		// Test data
-		currList.add(new Currency("China", "CNY","Yuan",5.38));
-		currList.add(new Currency("Columbia","COP","Peso", 2936.58));
-		currList.add(new Currency("India","INR","Rupee",61.93));
-		currList.add(new Currency("Malaysia","MYR","Ringgit",3.55));
+
 
 		Users scrumMaster = new Users("Rishika","Scrum Master",true,"001"); // Admin user
 		accList.add(new Account(scrumMaster,"rishika05","12345",92287068,22000));
@@ -112,8 +107,6 @@ public class MoneyExchange {
 				while(subOpt != 6) {
 					switch(subOpt) {
 					case 1:
-						makeTransaction(currentUser);
-						break;
 					}
 				}
 			} else if (opt == 4) {
@@ -149,23 +142,23 @@ public class MoneyExchange {
 
 
 
-	public static void makeTransaction(Account current) { // Asmond 
+	public static void makeTransaction(Account current,ArrayList<Transaction> transactList) { // Asmond 
 		double amt = Helper.readDouble("Enter amount to exchange ($SGD): ");
 		String curr = Helper.readString("Enter currency code to exchange to or 2 to view available currencies: ");
 		if(curr.equals("2")) {
-			CurrencyMain.viewAllCurr(currList);
+			CurrencyMain.viewAllCurr(CurrencyMain.currList);
 			curr = Helper.readString("Enter currency code to exchange: ");
 
 		}
-
-		for(Currency currency : currList) {
+		int x = 0;
+		for(Currency currency : CurrencyMain.currList) {
 			if(currency.getCurrencyCode().equalsIgnoreCase(curr)) {
 				if(amt>current.getBalance()) {
 					System.out.println("Amount entered is more than balance !!!");
 				} else {
 					double exchanged = currency.getExchangeRate() * amt;
 					current.setBalance(current.getBalance()-amt);
-					transactList.add(new Transaction(current,amt,exchanged,currency.getCurrencyCode()));
+					transactList.add(new Transaction(x++,current,amt,exchanged,currency.getCurrencyCode()));
 					System.out.println(currency.getCurrencyCode() + " " + exchanged + " exchanged");
 
 				}

@@ -38,8 +38,10 @@ public class TestCurrencyMain {
 				assertNotNull("Test if there is valid Camcorder arraylist to add to", currList);
 				assertEquals("Test that the Camcorder arraylist is empty.", 0, currList.size());
 				// Given an empty list, after adding 1 item, the size of the list is 1
-				CurrencyMain.addCurr(currList, CNY);
+				CurrencyMain.addCurr(currList,CNY);
 				assertEquals("Test that the Camcorder arraylist size is 1.", 1, currList.size());
+				
+				//Test contents are the same
  
 	}
 	
