@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class FeedbackMain {
 	public static ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
 	public static LocalDate date = LocalDate.now();
+	
 	public static void main(String[] args) {
 		
 		
@@ -40,14 +41,14 @@ public class FeedbackMain {
 	
 	
 	
-public static void feedbackMenu() {
-	System.out.println(" ");
-	System.out.println("1. View All Feeback");
-	System.out.println("2. Add a new Feedback ");
-	System.out.println("3. Delete a feedback");
-	System.out.println("4. Search for Customer Feedback");
-	System.out.println("5. View Main Menu");
-}
+	public static void feedbackMenu() {
+		System.out.println(" ");
+		System.out.println("1. View All Feeback");
+		System.out.println("2. Add a new Feedback ");
+		System.out.println("3. Delete a feedback");
+		System.out.println("4. Search for Customer Feedback");
+		System.out.println("5. View Main Menu");
+	}
 	
 	
 	public static void viewAllFeedBack() { // Manfred
