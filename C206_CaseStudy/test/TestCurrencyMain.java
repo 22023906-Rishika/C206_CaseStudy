@@ -42,5 +42,17 @@ public class TestCurrencyMain {
 				assertEquals("Test that the Camcorder arraylist size is 1.", 1, currList.size());
  
 	}
+	
+	@Test
+	public void testCreateCurrency() {
+		
+	}
+	
+	@Test
+	public void testDelCurr() {
+		
+	}
+	
+	
 
 }
