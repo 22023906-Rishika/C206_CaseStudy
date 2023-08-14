@@ -38,7 +38,9 @@ public class TransactionMain {
 
 	
 	
-	
+	public static void editTrans() {
+		
+	}
 	
 public static void TransactionMenu() {
 	System.out.println(" ");
@@ -75,7 +77,7 @@ public static void TransactionMenu() {
 		int id = Helper.readInt("Enter Transaction ID to delete: ");
 		for(Transaction trans : TransactionList) {
 			if(trans.getId() == id) {
-				char opt = Helper.readChar("Do you wish to proceed to delete Transaction ID " + Accid + " (Y/N): ");
+				char opt = Helper.readChar("Do you wish to proceed to delete Transaction ID " + trans.getId() + " (Y/N): ");
 				if(Character.toLowerCase(opt) == 'y' ) {
 					TransactionList.remove(trans);
 					System.out.println("Transaction ID " + trans + " deleted from database.");
