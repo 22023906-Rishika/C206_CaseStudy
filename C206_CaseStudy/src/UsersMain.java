@@ -20,7 +20,7 @@ public class UsersMain {
 		userList.add(new User("Charli", "Student", false, "22347890"));
 		userList.add(new User("Dave", "Student", false, "21034675"));
 
-		currMenu();
+		userMenu();
 		int subOpt = Helper.readInt("Please choose an option: ");
 		while (subOpt != 6) {
 			switch (subOpt) {
@@ -46,7 +46,7 @@ public class UsersMain {
 
 		System.out.println("Exited");
 	}
-}
+
 
 	public static void userMenu() {
 		System.out.println("1. View all Users");
@@ -71,7 +71,7 @@ public class UsersMain {
 		boolean found = false;
 
 		for (User user : userList) {
-			if (user.getUserId().equalsIgnoreCase(userId)) {
+			if (user.getUserID().equalsIgnoreCase(userId)) {
 				found = true;
 				boolean admin = true;
 				String newName = Helper.readString("Enter new name: ");
@@ -115,7 +115,7 @@ public class UsersMain {
 			boolean found = false;
 			String userId = Helper.readString("Enter user ID to delete: ");
 			for (User existingUser : userList) {
-				if (existingUser.getUserId().equalsIgnoreCase(userId)) {
+				if (existingUser.getUserID().equalsIgnoreCase(userId)) {
 					user = existingUser;
 					found = true;
 					break;
@@ -134,8 +134,8 @@ public class UsersMain {
 		String output = String.format("%-15s %-15s %-10s %-15s\n", "NAME", "ROLE", "ADMIN", "USER ID");
 
 		for (User user : userList) {
-			String adminStatus = user.isAdmin() ? "Yes" : "No";
-			output += String.format("%-15s %-15s %-10s %-15s\n", user.getName(), user.getRole(), adminStatus, user.getUserId());
+			String adminStatus = user.getAdmin() ? "Yes" : "No";
+			output += String.format("%-15s %-15s %-10s %-15s\n", user.getName(), user.getRole(), adminStatus, user.getUserID());
 		}
 
 		System.out.println(output);

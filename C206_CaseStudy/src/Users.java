@@ -1,11 +1,13 @@
 
-public class Users {
+public class User {
 
 	private String name;
 	private String role;
 	private boolean admin;
 	private String userID;
-	public Users(String name, String role, boolean admin,String userID) {
+	private char newAdminStatus;
+	
+	public User(String name, String role, boolean admin,String userID) {
 		this.name = name;
 		this.admin = admin;
 		this.role = role;
@@ -32,6 +34,12 @@ public class Users {
 	
 	public boolean getAdmin() {
 		return admin;
+	}
+	/**
+	 * @param newAdminStatus
+	 */
+	public void setAdmin(char newAdminStatus) {
+		this.newAdminStatus = newAdminStatus;
 	}
 	
 	
