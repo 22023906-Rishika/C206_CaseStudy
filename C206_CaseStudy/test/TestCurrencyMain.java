@@ -59,7 +59,9 @@ public class TestCurrencyMain {
 
 		assertEquals("Test that the Currency ArrayList is empty.", 0, currList.size());
 
-
-
 	}
+	
+	
+	@Test
+	public void 
 }
