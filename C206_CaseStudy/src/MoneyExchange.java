@@ -7,7 +7,7 @@ public class MoneyExchange {
 
 
 	public static ArrayList<Account> accList = new ArrayList<Account>();
-	
+
 	public static Account currentUser;
 	public static boolean isAdmin = false;
 	public static void validateAdmin(Account acc) {
@@ -28,6 +28,7 @@ public class MoneyExchange {
 		Users softwareEng = new Users("Asmond","Software Engineer",true,"002"); // Second admin user
 		accList.add(new Account(softwareEng,"asmond0811","12345",93387077,22000));
 
+		CurrencyMain.viewAllCurr(CurrencyMain.currList);
 		System.out.println("Welcome to RemitNow !!!");
 		System.out.println("1. Login");
 		System.out.println("2. Sign Up");
@@ -90,7 +91,7 @@ public class MoneyExchange {
 		System.out.println("6. Log out");
 		System.out.println(" ");
 	}
-	
+
 
 
 	public static void loggedInMenuMain() {
@@ -102,14 +103,10 @@ public class MoneyExchange {
 			} else if (opt == 2) {
 				// Add accounts selection menu
 			} else if (opt == 3) {
-				System.out.println("1. Make a transaction");
-				int subOpt = Helper.readInt("Please choose an option: ");
-				while(subOpt != 6) {
-					switch(subOpt) {
-					case 1:
-					}
-				}
-			} else if (opt == 4) {
+				TransactionMain.main(null);
+			}
+
+			else if (opt == 4) {
 				CurrencyMain.main(null);
 			} else if (opt == 5) {
 				FeedbackMain.main(null);
@@ -123,7 +120,10 @@ public class MoneyExchange {
 		isAdmin = false;
 	}
 
-	
+
+
+
+
 
 
 	public static Account validateAcc() { // Asmond
@@ -169,7 +169,7 @@ public class MoneyExchange {
 	}
 
 
-	
+
 
 
 

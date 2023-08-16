@@ -9,7 +9,7 @@ public class Transaction {
 	public Transaction(int id,Account acc, double amount, double convertAmt, String currency) {
 		this.id = id;
 		this.acc = acc;
-		this.accId = acc.getUsername();
+		this.accId = acc.getUsername(); 
 		this.amount = amount;
 		this.convertAmt = convertAmt;
 		this.currency = currency;

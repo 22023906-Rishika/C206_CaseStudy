@@ -13,10 +13,7 @@ public class CurrencyMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		currList.add(new Currency("China", "CNY","Yuan",5.38));
-		currList.add(new Currency("Columbia","COP","Peso", 2936.58));
-		currList.add(new Currency("India","INR","Rupee",61.93));
-		currList.add(new Currency("Malaysia","MYR","Ringgit",3.55));
+	
 
 		currMenu();
 		int subOpt = Helper.readInt("Please choose an option: ");
@@ -134,6 +131,12 @@ public class CurrencyMain {
 	}
 
 	public static void viewAllCurr(ArrayList<Currency> currList) {
+		
+		currList.add(new Currency("China", "CNY","Yuan",5.38));
+		currList.add(new Currency("Columbia","COP","Peso", 2936.58));
+		currList.add(new Currency("India","INR","Rupee",61.93));
+		currList.add(new Currency("Malaysia","MYR","Ringgit",3.55));
+		
 		String output = String.format("%-10s %-10s %-10s %-10s\n","COUNTRY","CODE","CURRENCY","RATE");
 
 		for(Currency curr : currList) {
