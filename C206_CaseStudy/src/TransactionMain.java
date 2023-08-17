@@ -5,8 +5,8 @@ public class TransactionMain {
 	public static ArrayList<Transaction> TransactionList = new ArrayList<Transaction>();
 	public static LocalDate date = LocalDate.now();
 	public static void main(String[] args) {
-		
-		
+
+
 
 		TransactionMenu();
 		int subOpt = Helper.readInt("Please choose an option: ");
@@ -32,25 +32,27 @@ public class TransactionMain {
 			TransactionMenu();
 			subOpt = Helper.readInt("Please choose an option: ");
 		}
-		
+
 		System.out.println("Exited");	
 	}
 
-	
-	
+
+
 	public static void editTrans() {
-		
+
 	}
-	
-public static void TransactionMenu() {
-	System.out.println(" ");
-	System.out.println("1. View All Transactions");
-	System.out.println("2. Add a new transaction ");
-	System.out.println("3. Delete a transaction");
-	System.out.println("4. View Main Menu");
-}
-	
-	
+
+	public static void TransactionMenu() {
+		System.out.println(" ");
+		System.out.println("1. View All Transactions");
+		System.out.println("2. Add a new transaction ");
+		System.out.println("3. Delete a transaction");
+		System.out.println("4. View Main Menu");
+	}
+
+
+
+
 	public static void viewAllTransaction() { 
 		String output = String.format("%-10s %-10s %-15s %-15s %-15s %-15s \n","Transaction","TransactionID","AMOUNT","CONVERT AMOUNT", "CURRENCY", "ACCSENTTO");
 
@@ -60,15 +62,26 @@ public static void TransactionMenu() {
 
 		System.out.println(output);
 	}
+<<<<<<< HEAD
 	
 	public static void addTransaction(ArrayList<Transaction> TransactionList, Account acc) {
 			
 			Transaction trans = MoneyExchange.makeTransaction(acc);
 			TransactionList.add(trans);
 			System.out.println("Transaction successfully added");
+=======
+
+	public static void addTransaction(ArrayList<Transaction> TransactionList) {
+		{
+			System.out.println("Transaction successfully added");
+			MoneyExchange.makeTransaction(MoneyExchange.currentUser,TransactionList );
+		} 
+
+
+>>>>>>> branch 'master' of https://github.com/22023906-Rishika/C206_CaseStudy.git
 	}
-	
-	
+
+
 
 	public static void delTransaction() {
 		boolean found = true;
@@ -89,13 +102,13 @@ public static void TransactionMenu() {
 			}
 		}
 	}
-	
 
 
-	
+
+
 	public static void searchTransaction() {
 		String input = Helper.readString("Enter transaction code:  ");
-		
-		
+
+
 	}
 }

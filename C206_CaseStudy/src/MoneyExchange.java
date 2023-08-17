@@ -21,6 +21,11 @@ public class MoneyExchange {
 	public static void main(String[] args) {
 		// Test data
 
+		CurrencyMain.currList.add( new Currency("China", "CNY","Yuan",5.38));
+		CurrencyMain.currList.add( new Currency("Malaysia","MYR","Ringgit",3.55));
+		CurrencyMain.currList.add( new Currency("Columbia","COP","Peso", 2936.58));
+		CurrencyMain.currList.add( new Currency("India","INR","Rupee",61.93));
+
 
 		Users scrumMaster = new Users("Rishika","Scrum Master",true,"001"); // Admin user
 		accList.add(new Account(scrumMaster,"rishika05","12345",92287068,22000));

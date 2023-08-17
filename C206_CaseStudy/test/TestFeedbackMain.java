@@ -69,7 +69,7 @@ public class TestFeedbackMain {
 	}
 
 	@Test
-	public void testViewAllCurr() {
+	public void testViewAllFeedback() {
 
 		Feedback1 = new Feedback(1,date, 7, "Is good");
 		Feedback2 = new Feedback(2,date, 6, "Is not good");

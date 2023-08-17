@@ -74,6 +74,8 @@ public class TestCurrencyMain {
 
 	}
 	
+
+	
 	
 	@Test
 	public void testViewAllCurr() {

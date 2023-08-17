@@ -37,21 +37,21 @@ public class TestTransactionMain {
 
 	}
 
-//	@Test
-//	public void testDelCurr() {
-//
-//		// Item list is not null and it is empty
-//		assertNotNull("Test if there is valid Transaction ArrayList to add to", transList);
-//		//Test that the list contains elements to delete
-//		transList.add(INR);
-//		assertTrue("Test if there are elements in the Transaction ArrayList to delete",transList.contains(INR));
-//
-//		transList.remove(INR);
-//		assertFalse(transList.contains(INR));
-//
-//		assertEquals("Test that the Transaction ArrayList is empty.", 0, transList.size());
-//
-//	}
+	@Test
+	public void testDelCurr() {
+
+		// Item list is not null and it is empty
+		assertNotNull("Test if there is valid Transaction ArrayList to add to", transList);
+		//Test that the list contains elements to delete
+		transList.add(INR);
+		assertTrue("Test if there are elements in the Transaction ArrayList to delete",transList.contains(INR));
+
+		transList.remove(INR);
+		assertFalse(transList.contains(INR));
+
+		assertEquals("Test that the Transaction ArrayList is empty.", 0, transList.size());
+
+	}
 	
 	
 	
