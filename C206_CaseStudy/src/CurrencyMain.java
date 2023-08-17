@@ -100,6 +100,8 @@ public class CurrencyMain {
 			} 
 		}
 	}
+	
+
 
 	public static Currency getCurrencyAdd() {
 		String country = Helper.readString("Enter country name: ");
