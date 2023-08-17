@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class TestUserMain {
 
-    private ArrayList<User> userList;
+	public static ArrayList<Users> userList = new ArrayList<Users>();
 
     public TestUserMain() {
         super();
@@ -14,13 +14,13 @@ public class TestUserMain {
     @Before
     public void setUp() throws Exception {
         // Prepare test data
-        userList = new ArrayList<User>();
+    	
     }
 
     @Test
     public void testAddUser() {
         // Given an empty list, after adding 1 item, the size of the list is 1
-        User Alice = new User("Alice", "Student", false, "22023303");
+        Users Alice = new Users("Alice", "Student", false, "22023303");
         UsersMain.addUser(userList, Alice);
         assertEquals("Test that the User ArrayList size is 1.", 1, userList.size());
 
@@ -31,7 +31,7 @@ public class TestUserMain {
     @Test
     public void testDelUser() {
         // Test that the list contains elements to delete
-        User Dave = new User("Dave", "Student", false, "21034675");
+        Users Dave = new Users("Dave", "Student", false, "21034675");
         userList.add(Dave);
         assertTrue("Test if there are elements in the User ArrayList to delete", userList.contains(Dave));
 

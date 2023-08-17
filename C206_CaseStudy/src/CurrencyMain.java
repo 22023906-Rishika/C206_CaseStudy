@@ -64,8 +64,6 @@ public class CurrencyMain {
 				System.out.println("Currency successfully added");
 			} 
 		}
-
-
 	}
 
 
