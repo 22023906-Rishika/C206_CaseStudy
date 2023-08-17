@@ -62,7 +62,7 @@ public class MoneyExchange {
 	}
 
 
-	public static void signUp() {
+	public static void signUp() { // Asmond
 		Random ran = new Random();
 		int id = ran.nextInt(1000);
 		String name = Helper.readString("Enter your name: ");
@@ -102,13 +102,7 @@ public class MoneyExchange {
 			} else if (opt == 2) {
 				// Add accounts selection menu
 			} else if (opt == 3) {
-				System.out.println("1. Make a transaction");
-				int subOpt = Helper.readInt("Please choose an option: ");
-				while(subOpt != 6) {
-					switch(subOpt) {
-					case 1:
-					}
-				}
+				TransactionMain.main(null);
 			} else if (opt == 4) {
 				CurrencyMain.main(null);
 			} else if (opt == 5) {
@@ -141,8 +135,9 @@ public class MoneyExchange {
 	}
 
 
-
-	public static void makeTransaction(Account current,ArrayList<Transaction> transactList) { // Asmond 
+	public static int x = 0;
+	public static Transaction makeTransaction(Account current) { // Asmond 
+		Transaction trans = null;
 		double amt = Helper.readDouble("Enter amount to exchange ($SGD): ");
 		String curr = Helper.readString("Enter currency code to exchange to or 2 to view available currencies: ");
 		if(curr.equals("2")) {
@@ -150,7 +145,7 @@ public class MoneyExchange {
 			curr = Helper.readString("Enter currency code to exchange: ");
 
 		}
-		int x = 0;
+		
 		for(Currency currency : CurrencyMain.currList) {
 			if(currency.getCurrencyCode().equalsIgnoreCase(curr)) {
 				if(amt>current.getBalance()) {
@@ -158,14 +153,17 @@ public class MoneyExchange {
 				} else {
 					double exchanged = currency.getExchangeRate() * amt;
 					current.setBalance(current.getBalance()-amt);
-					transactList.add(new Transaction(x++,current,amt,exchanged,currency.getCurrencyCode()));
+					trans = (new Transaction(x++,current,amt,exchanged,currency.getCurrencyCode()));
 					System.out.println(currency.getCurrencyCode() + " " + exchanged + " exchanged");
 
 				}
 
 
 			}
+			
+		
 		}
+		return trans;
 	}
 
 

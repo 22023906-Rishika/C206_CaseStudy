@@ -16,7 +16,7 @@ public class TransactionMain {
 				viewAllTransaction();
 				break;
 			case 2:
-				addTransaction(TransactionList);
+				addTransaction(TransactionList, MoneyExchange.currentUser);
 				break;
 			case 3:
 				delTransaction();
@@ -61,13 +61,11 @@ public static void TransactionMenu() {
 		System.out.println(output);
 	}
 	
-	public static void addTransaction(ArrayList<Transaction> TransactionList) {
-		{
-			System.out.println("Currency successfully added");
-			MoneyExchange.makeTransaction(MoneyExchange.currentUser,TransactionList );
-		} 
-
-
+	public static void addTransaction(ArrayList<Transaction> TransactionList, Account acc) {
+			
+			Transaction trans = MoneyExchange.makeTransaction(acc);
+			TransactionList.add(trans);
+			System.out.println("Transaction successfully added");
 	}
 	
 	

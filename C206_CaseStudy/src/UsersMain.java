@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class UsersMain {
 	public static ArrayList<Users> userList = new ArrayList<Users>();
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -40,8 +39,10 @@ public class UsersMain {
 				System.out.println("Invalid choice entered");
 				break;
 			}
+
 			userMenu();
 			subOpt = Helper.readInt("Please choose an option: ");
+			
 		}
 
 		System.out.println("Exited");

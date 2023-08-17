@@ -13,10 +13,10 @@ public class CurrencyMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		currList.add(new Currency("China", "CNY","Yuan",5.38));
-		currList.add(new Currency("Columbia","COP","Peso", 2936.58));
-		currList.add(new Currency("India","INR","Rupee",61.93));
-		currList.add(new Currency("Malaysia","MYR","Ringgit",3.55));
+		currList.add( new Currency("China", "CNY","Yuan",5.38));
+		currList.add( new Currency("Malaysia","MYR","Ringgit",3.55));
+		currList.add( new Currency("Columbia","COP","Peso", 2936.58));
+		currList.add( new Currency("India","INR","Rupee",61.93));
 
 		currMenu();
 		int subOpt = Helper.readInt("Please choose an option: ");
@@ -26,13 +26,13 @@ public class CurrencyMain {
 				viewAllCurr(currList);
 				break;
 			case 2:
-				addCurr(currList,getCurrency(1,currList));
+				addCurr(currList,getCurrencyAdd());
 				break;
 			case 3:
 				editRate(currList);
 				break;
 			case 4:
-				deleteCurr(currList,getCurrency(2,currList));
+				deleteCurr(currList,getCurrencyDel());
 				break;
 			case 5:
 				searchCurr();
@@ -49,25 +49,19 @@ public class CurrencyMain {
 	}
 
 	public static void currMenu() {
+		Helper.line(30, "=");
+		System.out.println("Currency Management Menu");
 		System.out.println("1. View all currencies");
 		System.out.println("2. Add a new currency");
 		System.out.println("3. Edit an existing currency");
 		System.out.println("4. Delete an existing currency");
 		System.out.println("5. Search for a currency");
 		System.out.println("6. Exit");
+		Helper.line(30, "=");
 		System.out.println(" ");
 	}
-	
-	
-	public static void addCurr(ArrayList<Currency> currList,Currency currency) {
-		{
 
-			if(currency != null ) {
-				currList.add(currency);
-				System.out.println("Currency successfully added");
-			} 
-		}
-	}
+
 
 
 
@@ -87,48 +81,55 @@ public class CurrencyMain {
 				System.out.println("Unknown currency code");
 			}
 		}
+		
+		
 	}
 
 	public static void deleteCurr(ArrayList<Currency> currList, Currency currency) {
-		if(currency != null) {
-			currList.remove(currency);
-			System.out.println(currency.getCurrencyCode() + "successfully deleted.");
+		
+		if(MoneyExchange.isAdmin == true){
+				currList.remove(currency);
+				System.out.println(currency.getCurrencyCode() + " successfully deleted.");
+			}
+		}
+	public static void addCurr(ArrayList<Currency> currList,Currency currency) {
+		{
+			if(MoneyExchange.isAdmin == true){
+				currList.add(currency);
+				System.out.println("Currency successfully added");
+			} 
 		}
 	}
 
-	public static Currency getCurrency(int function, ArrayList<Currency> currList ) {
+	public static Currency getCurrencyAdd() {
+		String country = Helper.readString("Enter country name: ");
+		String code = Helper.readString("Enter country code: ");
+		String currName = Helper.readString("Enter currency name: ");
+		double rate = Helper.readDouble("Enter exhange rate: ");
+		Currency currency = new Currency(country,code,currName,rate);
+		
+		return currency;
+	}
+
+	public static Currency getCurrencyDel() {
 		Currency currency = null;
-		if(MoneyExchange.isAdmin == true) {
-			if(function == 1 ) {
-
-				{
-					String country = Helper.readString("Enter country name: ");
-					String code = Helper.readString("Enter country code: ");
-					String currName = Helper.readString("Enter currency name: ");
-					double rate = Helper.readDouble("Enter exhange rate: ");
-					currency = new Currency(country,code,currName,rate);
-				} 
-			} else if(function == 2) {
-				boolean found = true;
-				String code = Helper.readString("Enter country code to delete: ");
-				for(Currency curr : currList) {
-					if(curr.getCurrencyCode().equalsIgnoreCase(code)) {
-						currency = curr;			
-					} else {
-						found = false;
-					}
-				}
-
-				if(!found) {
-					System.out.println("Country code not found");
-				}
+		boolean found = true;
+		String code = Helper.readString("Enter country code: ");
+		for(Currency curr : currList) {
+			if(curr.getCurrencyCode().equalsIgnoreCase(code)) {
+				currency = curr;
+				found = true;
+				break;
+			} else {
+				found = false;
 			}
-		} else {
-			System.out.println("Administrative rights required");
 		}
 
+		if(!found) {
+			System.out.println("Country code not found");
+		}
+		
 		return currency;
-
 	}
 
 	public static void viewAllCurr(ArrayList<Currency> currList) {
@@ -138,7 +139,7 @@ public class CurrencyMain {
 			output += String.format("%-10s %-10s %-10s %-10.2f\n", curr.getCountry(),curr.getCurrencyCode(),curr.getCurrencyName(),curr.getExchangeRate());
 		}
 
-		System.out.println(output);
+		System.out.print(output);
 
 	}
 

@@ -6,21 +6,23 @@ public class FeedbackMain {
   public static LocalDate date = LocalDate.now();
   
   public static void main(String[] args) {
-    
-    
+	  Feedback Feedback1 = new Feedback(1,date, 7, "Is good");
+	  Feedback Feedback2 = new Feedback(2,date, 6, "Is not good");
+	  feedbackList.add(Feedback1);
+		feedbackList.add(Feedback2);
 
     feedbackMenu();
     int subOpt = Helper.readInt("Please choose an option: ");
     while(subOpt != 6) {
       switch (subOpt) {
       case 1:
-        viewAllFeedBack();
+        viewAllFeedBack(feedbackList);
         break;
       case 2:
-        addFeedback(feedbackList, getFeedback(1,feedbackList));
+        addFeedback(feedbackList, getFeedBackAdd());
         break;
       case 3:
-        delFeedback();
+        delFeedback(feedbackList,getFeedbackDel());
 
         break;
       case 4:
@@ -51,58 +53,50 @@ public class FeedbackMain {
   }
   
   
-  public static void viewAllFeedBack() { // Manfred
-    String output = String.format("%-10s %-10s %-15s %-15s\n","ID","DATE","RATING (/10)","MESSAGE");
+  public static void viewAllFeedBack(ArrayList<Feedback> feedbackList) { // Manfred
+    System.out.println(getFeedbacks(feedbackList));
+  }
+  
+  public static String getFeedbacks(ArrayList<Feedback> feedbackList) {
+	  String output = String.format("%-10s %-10s %-15s %-15s\n","ID","DATE","RATING (/10)","MESSAGE");
 
-    for(Feedback fb : feedbackList) {
-      output += String.format("%-10s %-10s %-15s %-15s\n", fb.getID(),fb.getDate(),fb.getRating(),fb.getMessage());
-    }
+	    for(Feedback fb : feedbackList) {
+	      output += String.format("%-10s %-10s %-15s %-15s\n", fb.getID(),fb.getDate(),fb.getRating(),fb.getMessage());
+	    }
 
-    System.out.println(output);
+	    return (output);
   }
   
   
   public static void addFeedback(ArrayList<Feedback> feedbackList, Feedback feedback ) { // Manfred
     {
-      if(feedback != null) {
+      {
         feedbackList.add(feedback);
         System.out.println("Feedback successfully added");
       }
     }
   }
 
-  public static void delFeedback() {
-    boolean found = true;
-    int id = Helper.readInt("Enter feedback ID to delete: ");
-    for(Feedback fb : feedbackList) {
-      if(fb.getID() == id) {
-        char opt = Helper.readChar("Do you wish to proceed to delete feedback ID " + id + " (Y/N): ");
-        if(Character.toLowerCase(opt) == 'y' ) {
-          feedbackList.remove(fb);
-          System.out.println("Feedback ID " + fb + " deleted from database.");
-          break;
-        } else {
-          System.out.println("Delete aborted");
-          break;
-        }
-      } else {
-        found = false;
-      }
+  public static void delFeedback(ArrayList<Feedback> fbList, Feedback fb) {
+    if(MoneyExchange.isAdmin == true) {
+    	fbList.remove(fb);
+    	System.out.println(" deleted succesfully");
     }
   }
   
-  public static int feedbackID = 0;
-  public static Feedback getFeedback(int function, ArrayList<Feedback> feedbackList ) {
+ 
+  public static Feedback getFeedBackAdd() {
+	  int feedbackID = 0;
+	  int rating = Helper.readInt("Please rate our services out of 10: ");
+      String message = Helper.readString("Please leave a feedback on how MeRemit can do better: ");
+      Feedback fb = new Feedback(feedbackID+1,date,rating,message);
+      feedbackID++;
+      
+	  return fb;
+  }
+  public static Feedback getFeedbackDel( ) {
     Feedback feedback = null;
     if(MoneyExchange.isAdmin == true) {
-      if(function == 1 ) {
-        {
-          int rating = Helper.readInt("Please rate our services out of 10: ");
-          String message = Helper.readString("Please leave a feedback on how MeRemit can do better: ");
-          feedback = new Feedback(feedbackID+1,date,rating,message);
-          feedbackID++;
-        } 
-      } else if(function == 2) {
         boolean found = true;
         int id  = Helper.readInt("Enter ID to delete: ");
         for(Feedback fb :feedbackList) {
@@ -117,11 +111,12 @@ public class FeedbackMain {
           System.out.println("ID not found");
         }
       }
-    } 
-
     return feedback;
+    }
 
-  }
+    
+
+  
   
   public static void searchFeedback() { //Manfred
     

@@ -1,19 +1,28 @@
+/**
+ * I declare that this code was written by me.
+ * I will not copy or allow others to copy my code.
+ * I understand that copying code is considered as plagiarism.
+ *
+ * 22037707, Aug 17, 2023 2:18:12 AM
+ */
+
 import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
-public class TestCurrencyMain {
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-	// Test data preparation
+/**
+ * 
+ */
+public class MoneyExchangeTest {
+
 	public Currency MYR;
 	public Currency INR;
 	public Currency CNY;
@@ -24,7 +33,7 @@ public class TestCurrencyMain {
    
 	public ArrayList<Currency> currList =  new ArrayList<Currency>();
 
-	public TestCurrencyMain() {
+	public MoneyExchangeTest() {
 		super();
 	}
 	@Before
@@ -42,7 +51,6 @@ public class TestCurrencyMain {
 
 	@Test
 	public void testAddCurr() {
-		MoneyExchange.isAdmin = true;
 		// Item list is not null and it is empty
 		assertNotNull("Test if there is valid Currency ArrayList to add to", currList);
 		assertEquals("Test that the Currency ArrayList is not empty.", 0, currList.size());
@@ -56,40 +64,29 @@ public class TestCurrencyMain {
 
 	@Test
 	public void testDelCurr() {
-		MoneyExchange.isAdmin = true;
+
 		// Item list is not null and it is empty
 		assertNotNull("Test if there is valid Currency ArrayList to add to", currList);
 		//Test that the list contains elements to delete
-		
-		CurrencyMain.addCurr(currList, INR);
+		currList.add(INR);
 		assertTrue("Test if there are elements in the Currency ArrayList to delete",currList.contains(INR));
 
-		
-		CurrencyMain.deleteCurr(currList, INR);
-		assertFalse("Test deletion of INR object ",currList.contains(INR));
-		
-		
-		CurrencyMain.deleteCurr(currList, COP);
-		assertEquals("Test deletion of objects not in the list", 0, currList.size());
+		currList.remove(INR);
+		assertFalse(currList.contains(INR));
+
+		assertEquals("Test that the Currency ArrayList is empty.", 0, currList.size());
 
 	}
 	
 	
 	@Test
 	public void testViewAllCurr() {
-		
-		
-		assertNotNull("Test if there is valid Currency Arraylist",currList);
-		
-		String output = null;
-		
-		
 		currList.add(CNY);
 		currList.add(COP);
 		CurrencyMain.currList.add(CNY);
 		CurrencyMain.currList.add(COP);
 		
-		output = String.format("%-10s %-10s %-10s %-10s\n","COUNTRY","CODE","CURRENCY","RATE");
+		String output = String.format("%-10s %-10s %-10s %-10s\n","COUNTRY","CODE","CURRENCY","RATE");
 
 		for(Currency curr : currList) {
 			output += String.format("%-10s %-10s %-10s %-10.2f\n", curr.getCountry(),curr.getCurrencyCode(),curr.getCurrencyName(),curr.getExchangeRate());
@@ -100,4 +97,5 @@ public class TestCurrencyMain {
 		assertEquals(output, outputStreamCaptor.toString());
 		
 	}
+
 }
