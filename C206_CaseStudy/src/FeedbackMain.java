@@ -6,10 +6,6 @@ public class FeedbackMain {
   public static LocalDate date = LocalDate.now();
   
   public static void main(String[] args) {
-	  Feedback Feedback1 = new Feedback(1,date, 7, "Is good");
-	  Feedback Feedback2 = new Feedback(2,date, 6, "Is not good");
-	  feedbackList.add(Feedback1);
-		feedbackList.add(Feedback2);
 
     feedbackMenu();
     int subOpt = Helper.readInt("Please choose an option: ");

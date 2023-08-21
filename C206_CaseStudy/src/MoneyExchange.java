@@ -104,8 +104,10 @@ public class MoneyExchange {
 		while(opt !=6) {
 			if (opt == 1) {
 				// Add users selection menu
+				UsersMain.main(null);
 			} else if (opt == 2) {
 				// Add accounts selection menu
+				AccountMain.main(null);
 			} else if (opt == 3) {
 				TransactionMain.main(null);
 			} else if (opt == 4) {
