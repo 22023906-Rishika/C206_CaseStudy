@@ -13,7 +13,7 @@ public class CurrencyMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		
+
 		currMenu();
 		int subOpt = Helper.readInt("Please choose an option: ");
 		while(subOpt != 6) {
@@ -77,17 +77,18 @@ public class CurrencyMain {
 				System.out.println("Unknown currency code");
 			}
 		}
-		
-		
+
+
 	}
 
 	public static void deleteCurr(ArrayList<Currency> currList, Currency currency) {
-		
-		if(MoneyExchange.isAdmin == true){
-				currList.remove(currency);
-				System.out.println(currency.getCurrencyCode() + " successfully deleted.");
-			}
-		}
+
+
+		currList.remove(currency);
+		System.out.println(currency.getCurrencyCode() + " successfully deleted.");
+
+	}
+	
 	public static void addCurr(ArrayList<Currency> currList,Currency currency) {
 		{
 			if(MoneyExchange.isAdmin == true){
@@ -96,39 +97,51 @@ public class CurrencyMain {
 			} 
 		}
 	}
-	
+
 
 
 	public static Currency getCurrencyAdd() {
+		Currency currency = null;
+		
+		if(MoneyExchange.isAdmin == true) {
 		String country = Helper.readString("Enter country name: ");
 		String code = Helper.readString("Enter country code: ");
 		String currName = Helper.readString("Enter currency name: ");
 		double rate = Helper.readDouble("Enter exhange rate: ");
-		Currency currency = new Currency(country,code,currName,rate);
-		
+		currency = new Currency(country,code,currName,rate);
+		} else {
+			System.out.println("No admin rights");
+		}
+
 		return currency;
 	}
 
 	public static Currency getCurrencyDel() {
 		Currency currency = null;
 		boolean found = true;
-		String code = Helper.readString("Enter country code: ");
-		for(Currency curr : currList) {
-			if(curr.getCurrencyCode().equalsIgnoreCase(code)) {
-				currency = curr;
-				found = true;
-				break;
-			} else {
-				found = false;
+		if(MoneyExchange.isAdmin == true) {
+			String code = Helper.readString("Enter country code: ");
+			for(Currency curr : currList) {
+				if(curr.getCurrencyCode().equalsIgnoreCase(code)) {
+					currency = curr;
+					found = true;
+					break;
+				} else {
+					found = false;
+				}
 			}
+
+			if(!found) {
+				System.out.println("Country code not found");
+			}
+		} else {
+			System.out.println("No Admin Rights");
 		}
 
-		if(!found) {
-			System.out.println("Country code not found");
-		}
-		
 		return currency;
 	}
+	
+	
 
 	public static void viewAllCurr(ArrayList<Currency> currList) {
 		String output = String.format("%-10s %-10s %-10s %-10s\n","COUNTRY","CODE","CURRENCY","RATE");
